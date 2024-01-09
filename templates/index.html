@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block extra_styles %}
+<style>
+         .learning-outcomes {
+        background-color: #FFF5DA; /* Presuming this is the color from the image */
+        color: #333; /* Adjust text color as needed */
+        padding: 50px 0; /* Add top and bottom padding */
+        text-align: center; /* Center the text */
+    }
+
+    .learning-outcomes h2 {
+        font-size: 2.5rem; /* Large font for the title */
+        margin-bottom: 1rem; /* Spacing below the title */
+    }
+
+    .learning-outcomes p {
+        font-size: 1.2rem; /* Subtitle font size */
+        margin-bottom: 2rem; /* Spacing below the subtitle */
+    }
+
+    .learning-outcomes button {
+        background-color: #333; /* Button background color */
+        color: white; /* Button text color */
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .learning-outcomes button:hover {
+        background-color: #555; /* Darken button on hover */
+    }
+    .hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("{{ url_for('static', filename='img/dark.jpg') }}") no-repeat center center;
+        background-size: cover;
+        height: 300px; /* Adjust based on your design */
+
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6); /* Overlay color */
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 70%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Add any additional decorative styles as necessary */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-overlay"></div> <!-- Overlay to ensure text stands out -->
+    <div class="hero-content">
+        <h1 class="hero-title">TECH TROVE NEXUS</h1>
+        <p class="hero-subtitle" style="font-size: 20px;">Dive into a world where technology education is simplified, offering a treasure trove of resources for learners of all levels.</p>
+    </div>
+</div>
+
+
+<!-- Category Grid -->
+<div class="container mt-4">
+    <div class="row">
+        {% for category in categories %}
+            <!-- Adding px-* class for horizontal padding -->
+            <div class="col-lg-4 col-md-6 mb-4 px-2"> <!-- Bootstrap classes for grid columns -->
+                <div class="category-card">
+                    {% with category=category %}
+                        {% include 'category.html' %}
+                    {% endwith %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div>{% include 'test.html' %} </div>
+{% endblock %}

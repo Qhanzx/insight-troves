@@ -7,17 +7,26 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item me-4"> <!-- Increased spacing -->
+                    <a class="nav-link custom-nav-link" href="#">Subject<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item me-4"> <!-- Increased spacing -->
+                    <a class="nav-link custom-nav-link" href="#">Examples</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Company</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Marketplace</a>
+                    <a class="nav-link custom-nav-link" href="#">Projects</a>
                 </li>
                 <!-- Add other menu items here -->
             </ul>
         </div>
     </div>
 </nav>
+
+<style>
+    .custom-nav-link {
+        font-size: larger; /* Increase font size */
+        /* You can also use a specific font size, e.g., font-size: 18px; */
+    }
+
+    /* If you want to add more custom styles to the nav items, add them here */
+</style>

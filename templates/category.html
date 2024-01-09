@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card with Image and Red Bars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@700&family=Taviraj:wght@400&display=swap" rel="stylesheet">
+    <style>
+        .card {
+            width: 350px; /* Set the width of the card to 350px */
+            height: 200px;
+            position: relative; /* For absolute positioning of red bars */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Drop shadow for the card */
+            font-family: 'Taviraj', serif; /* Default font for the body */
+            border-radius: 15px 0 15px 0; /* Remove any previous border-radius */
+            overflow: hidden; /* Ensures the border-radius applies to child elements */
+
+        }
+
+        .card-image {
+            background-image: url('static/img/dark.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 50px; /* Fixed height for the image area */
+            border-top-left-radius: 15px; /* Rounded top-left corner */
+        }
+    
+        .red-bar {
+            background-color: #ffecbd; /* Red background */
+            height: 20px; /* Height of the red bar */
+            width: 50%; /* Red bar takes up half the width of the card */
+            position: absolute;
+            color: #0e3d63;
+            font-size: 16px;
+            padding-left: 40px;
+            padding-bottom: 25px;
+            border-radius: 15px 0 0 0; /* Rounded left edge for the top bar */
+        }
+    
+        .top-bar {
+            top: 3px; /* Position the top bar below the image */
+            left: 0;
+        }
+    
+        .bottom-bar {
+            bottom: 3px;
+            right: 0;
+            border-radius: 0 0 15px 0; /* Rounded right edge for the bottom bar */
+        }
+    
+        .card-title {
+            font-family: 'Vesper Libre', serif;
+            color: #ffecbd; /* Text color for the title */
+            margin: 0; /* Removes default margin */
+            font-size: 20px;
+            padding-top: 20px;
+               }
+    
+        .card-body {
+            background: #1768AC; /* Assuming the body has a white background */
+            padding: 0 20px;
+            color: white; 
+            border-bottom-right-radius: 15px; /* Rounded bottom-right corner to match the red bar */
+        }
+    
+        p {
+            margin: 0; /* Removes default margin */
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="card">
+        <div class="card-image"><img src="{{ url_for('static', filename=category.image) }}" alt="{{ category.name }}"></div>
+        <div class="red-bar top-bar">
+            <p>Category</p>
+        </div>
+        
+        <div class="card-body">
+            <h2 class="card-title" >{{category.name}} Subnet Masking</h2>
+            <p> {{ category.description }} Body Text</p>
+        </div>
+        <div class="red-bar bottom-bar">
+            <p> Read More -> </p>
+        </div>
+    </div>
+</body>
+</html>
