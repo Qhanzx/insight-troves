@@ -2,37 +2,7 @@
 
 {% block extra_styles %}
 <style>
-         .learning-outcomes {
-        background-color: #FFF5DA; /* Presuming this is the color from the image */
-        color: #333; /* Adjust text color as needed */
-        padding: 50px 0; /* Add top and bottom padding */
-        text-align: center; /* Center the text */
-    }
-
-    .learning-outcomes h2 {
-        font-size: 2.5rem; /* Large font for the title */
-        margin-bottom: 1rem; /* Spacing below the title */
-    }
-
-    .learning-outcomes p {
-        font-size: 1.2rem; /* Subtitle font size */
-        margin-bottom: 2rem; /* Spacing below the subtitle */
-    }
-
-    .learning-outcomes button {
-        background-color: #333; /* Button background color */
-        color: white; /* Button text color */
-        border: none;
-        padding: 10px 20px;
-        font-size: 1rem;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .learning-outcomes button:hover {
-        background-color: #555; /* Darken button on hover */
-    }
+    
     .hero {
         position: relative;
         display: flex;
@@ -50,7 +20,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.6); /* Overlay color */
+        background: rgba(20, 42, 54, 0.521); /* Overlay color */
         z-index: 1;
     }
 
@@ -71,6 +41,28 @@
         font-size: 1.2rem;
     }
 
+     /* Media Query for medium screens (tablets) */
+     @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2rem; /* Smaller font size for medium screens */
+        }
+
+        .hero-subtitle {
+            font-size: 1rem; /* Smaller font size for medium screens */
+        }
+    }
+
+    /* Media Query for small screens (mobile phones) */
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 1.5rem; /* Even smaller font size for small screens */
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem; /* Even smaller font size for small screens */
+        }
+    }
+
     /* Add any additional decorative styles as necessary */
 </style>
 {% endblock %}
@@ -79,7 +71,7 @@
 <div class="hero">
     <div class="hero-overlay"></div> <!-- Overlay to ensure text stands out -->
     <div class="hero-content">
-        <h1 class="hero-title">TECH TROVE NEXUS</h1>
+        <h1 class="hero-title">NEXUS TROVE TECH</h1>
         <p class="hero-subtitle" style="font-size: 20px;">Dive into a world where technology education is simplified, offering a treasure trove of resources for learners of all levels.</p>
     </div>
 </div>

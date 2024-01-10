@@ -1,7 +1,9 @@
 <!-- navbar.html -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #ffecbd;">
     <div class="container-fluid justify-content-center">
-        <a class="navbar-brand mx-auto" href="#">Landwind</a>
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="static/svg/logo.svg" alt="Logo" style="height: 40px;"> <!-- Adjust the height as needed -->
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,10 +25,16 @@
 </nav>
 
 <style>
-    .custom-nav-link {
-        font-size: larger; /* Increase font size */
-        /* You can also use a specific font size, e.g., font-size: 18px; */
+    /* More specific selector for navbar */
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light {
+        background-color: #1768AC !important; /* Background color */
     }
 
-    /* If you want to add more custom styles to the nav items, add them here */
+    .custom-nav-link {
+        font-size: larger; /* Increase font size */
+        color: #ffecbd !important; /* Text color */
+        /* Additional custom styles */
+    }
+
+    /* Add more styles if needed */
 </style>

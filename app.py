@@ -3,11 +3,11 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
+@app.route('/home')
+def indexw():
     return render_template('index.html')
 
-'''@app.route('/')
+@app.route('/')
 def index():
     categories = [
         {'name': 'Category 1', 'description': 'Description 1', 'image': 'dark.jpg'},
@@ -18,6 +18,6 @@ def index():
         {'name': 'Category 6', 'description': 'Description 6', 'image': 'img6.jpg'}
     ]
     return render_template('index.html', categories=categories)
-'''
+
 #https://www.behance.net/gallery/173695679/Blog-Website-Landing-Page-Design?tracking_source=search_projects&l=35
 

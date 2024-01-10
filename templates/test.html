@@ -39,36 +39,64 @@
     }
     .learning-outcome-text button {
         background-color: #1768AC; /* Golden background */
-        color: #DAA520; /* Deep blue text */
+        color: bisque; /* Deep blue text */
         border: none; /* No border */
         padding: 10px 20px; /* Padding around the text */
         font-size: 1.3rem; /* Font size */
         border-radius: 5px; /* Rounded corners */
         cursor: pointer; /* Hand cursor on hover */
         transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+        display: block; /* Make the button a block-level element */
+    margin-left: 20px; /* Auto margin on left */
+    margin-right: auto; /* Auto margin on right */
     }
 
     .learning-outcome-text button:hover {
-        background-color: #DAA520; /* Slightly darker golden color on hover */
+        background-color: bisque; /* Slightly darker golden color on hover */
         color: #1768AC; /* Slightly darker blue text on hover */
     }
 
     /* Responsive adjustments */
+    /* Responsive adjustments for smaller screens */
     @media (max-width: 992px) {
         .learning-outcomes {
-            flex-direction: column; /* Stack image and text on top of each other */
-            text-align: center;
+            flex-direction: column; /* Stack image and text vertically */
+            align-items: center; /* Center items horizontally */
         }
 
         .learning-outcome-image {
-            width: 50%; /* Adjust width for medium screens */
+            width: 80%; /* Adjust width for smaller screens */
             height: auto; /* Adjust height to maintain aspect ratio */
-            margin-bottom: 20px; /* Spacing between the image and the text */
-            margin-right: 0; /* Remove right margin */
+            margin: 0 auto 20px; /* Center image and add spacing below */
+        }
+
+        .learning-outcome-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-top-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            margin-left: 0; /* Remove any left margin to center the image */
         }
 
         .learning-outcome-text {
-            padding-left: 0; /* Remove left padding */
+            padding: 0 20px; /* Adjust padding for text */
+            text-align: center; /* Center the text */
+            padding: 0 15px; /* Adjust padding for smaller screens */
+        }
+
+        .learning-outcome-text h2 {
+            font-size: 1.8rem; /* Smaller font size for the title */
+        }
+
+        .learning-outcome-text p, .learning-outcome-text ul {
+            font-size: 1rem; /* Smaller font size for paragraphs and list items */
+        }
+
+        /* Adjust button alignment if necessary */
+        .learning-outcome-text button {
+            margin: 20px auto 0; /* Center the button with auto margins */
+            font-size: 1rem;
         }
     }
 
