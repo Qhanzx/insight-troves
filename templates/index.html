@@ -81,14 +81,18 @@
 <div class="container mt-4">
     <div class="row">
         {% for category in categories %}
+        {% for post in posts %}
             <!-- Adding px-* class for horizontal padding -->
             <div class="col-lg-4 col-md-6 mb-4 px-2"> <!-- Bootstrap classes for grid columns -->
                 <div class="category-card">
                     {% with category=category %}
+                    {% with post=post %}
                         {% include 'category.html' %}
+                    {% endwith %}
                     {% endwith %}
                 </div>
             </div>
+            {% endfor %}
         {% endfor %}
     </div>
 </div>

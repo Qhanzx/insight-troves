@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Tech Unveiled: Exploring the Uncharted Territory of Tomorrow's Possibilities{% endblock %}
+{% block title %}{{post.Title}}{% endblock %}
 
 {% block content %}
 <div class="container mx-auto mt-12">
@@ -11,28 +11,17 @@
             
             <!-- Date and category -->
             <p class="date-tech-container">
-                <span class="date">Sep 05, 2023</span>
-                <span class="category">Technology</span>
+                <span class="date">{{post.ReadTime}} mins read</span>
+                <span class="category">{{post.CategoryID}}</span>
             </p>
 
             <!-- 3D Effect title -->
-            <h1 style = 'font-family:Taviraj, serif; ' class="font-bold text-3xl mb-3 text-center title-3d">Tech Unveiled: Exploring the Uncharted Territory of Tomorrow's Possibilities</h1>
+            <h1 style = 'font-family:Taviraj, serif; ' class="font-bold text-3xl mb-3 text-center title-3d">{{post.Title}}</h1>
 
            <!-- Card for article content -->
 <div class="article-card">
     <!-- Article content -->
-    <p class="text-lg">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...</p>
-    
-    <!-- Subtitle -->
-    <h3>For a 3D Title Effect</h3> <!-- Using <h3> as an example for a subtitle -->
-    
-    <p class="text-lg">Particularly in the Grotesque genre of fonts, using a bold and impactful typeface is key. Grotesque fonts, known for their solid and sturdy structures, are ideal for creating striking 3D text effects.</p>
-    
-    <p class="text-lg">One of the best fonts in this category that is widely recognized and often used for its strong presence and readability is "Helvetica Bold".</p>
-    
-    <p class="text-lg">Helvetica Bold is a classic choice within the Grotesque genre. It's known for its clean, straightforward appearance and excellent legibility. The bold weight of Helvetica provides the necessary thickness to make the 3D effect stand out.</p>
-    
-    <p class="text-lg">Here's how you can apply Helvetica Bold to your 3D title:</p>
+    <p class="text-lg">{{post.Content}}</p>
     <!-- Continue with the rest of the blog post content -->
 </div>
 </div>
@@ -63,7 +52,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 10px 0;
-    font-size: 1.5em; /* Adjust the size as needed */   
+    font-size: 1em; /* Adjust the size as needed */   
 }
 
 /* Update the background and text color of the main content container */
