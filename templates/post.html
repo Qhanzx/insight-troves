@@ -1,28 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='svg/logo.svg') }}">
+     
+</head>
 {% extends 'base.html' %}
 
-{% block title %}{{post.Title}}{% endblock %}
+{% block title %}{{ post.Title }}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto mt-12">
+<div class="container mx-auto mt-12" style="padding-top: 1cm;">
     <div class="flex flex-wrap -mx-4">
         <div class="w-full lg:w-2/3 px-4 mb-8">
-            <!-- Enhanced image with a larger drop shadow -->
-            <img src="{{ url_for('static', filename='img/light.jpg') }}" alt="Article Image" class="rounded shadow-xl mb-6" style="height: 500px;width:100%;">
+            <!-- Display the image -->
+            {% if images %}
+             <!-- Display Caption and AltText -->
+            <!--img src="{{ url_for('static', filename=images[0].ImagePath) }}" alt="{{ images[0].AltText }}" class="rounded shadow-xl mb-6" style="height: 500px;width:100%;"-->
+            <div>
+                <img src="{{ url_for('static', filename=images[0].ImagePath) }}" alt="{{ images[0].AltText }}" class="rounded shadow-xl mb-6" style="height: 300px;width:100%;">
+            </div>
+            {% else %}
+                <!-- Default image if no images are available -->
+                <img src="{{ url_for('static', filename='assets/img/tang.jpg') }}" alt="Default Image" class="rounded shadow-xl mb-6" style="height: 300px; width: 100%;">
+                
+            {% endif %}
             
             <!-- Date and category -->
             <p class="date-tech-container">
-                <span class="date">{{post.ReadTime}} mins read</span>
-                <span class="category">{{post.CategoryID}}</span>
+                <span class="date">{{ post.ReadTime }} mins read</span>
+                <span class="tag">{{post.tag.TagName}}</span>
+                <span class="category">{{ post.category.CategoryName }}</span>
             </p>
 
             <!-- 3D Effect title -->
-            <h1 style = 'font-family:Taviraj, serif; ' class="font-bold text-3xl mb-3 text-center title-3d">{{post.Title}}</h1>
+            <h1 style='font-family:Taviraj, serif;' class="font-bold text-3xl mb-3 text-center title-3d">{{ post.Title }}</h1>
 
-           <!-- Card for article content -->
-<div class="article-card">
-    <!-- Article content -->
-    <p class="text-lg">{{post.Content}}</p>
-    <!-- Continue with the rest of the blog post content -->
+            <!-- Card for article content -->
+            <div class="article-card">
+                <!-- Article content -->
+                {% if post.Description %}
+                <p><strong>Description:</strong> {{ post.Description }}</p>
+                {% endif %}
+                <!-- Safely render HTML content -->
+                <div>{{ post.Content | safe }}</div>
+            </div>
+
+ <!-- Navigation for previous and next posts -->
+ <div class="post-navigation">
+    {% if prev_post %}
+    <a href="{{ url_for('post', post_id=prev_post.PostID) }}" class="prev-post">Previous: {{ prev_post.Title }}</a>
+    {% endif %}
+    {% if next_post %}
+    <a href="{{ url_for('post', post_id=next_post.PostID) }}" class="next-post">Next: {{ next_post.Title }}</a>
+    {% endif %}
+</div>
 </div>
 </div>
 
@@ -33,12 +66,19 @@
 </div>
 
 <style>
+    /* Adjust the content width to 60% */
+.container {
+    width: 60%;
+    margin: 0 auto;
+}
+
         .article-card {
         background-color:#1768AC; /* Blue background for the card */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Drop shadow for the card */
         color: #ffd700; /* White text for better contrast on blue background */
         border-radius: 8px; /* Optional: Rounded corners for the card */
         padding: 20px 40px; /* Top and bottom padding 20px, left and right padding 40px */
+        margin-bottom: 20px; /* Space after the card */
     }
 
     .title-3d {
@@ -73,6 +113,28 @@ h1 {
 }
 
 /* ... other styles ... */
+
+.post-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .prev-post, .next-post {
+        background-color: #ffd700;
+        color: #1768AC;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        max-width: 40%;
+        
+    }
+
+    .prev-post:hover, .next-post:hover {
+        background-color: #0e3d63;
+        color: #ffd700;
+    }
 
 </style>
 {% endblock %}

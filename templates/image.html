@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Display</title>
+</head>
+<body>
+    <h1>Image Details</h1>
+     <!-- Display the ImagePath -->
+     <p><strong>ImagePath:</strong> {{ image.ImagePath }}</p>
+    {% if image %}
+    <!-- Display the image -->
+    <img src="{{ url_for('static', filename=image.ImagePath) }}" alt="{{ image.AltText }}" class="rounded shadow-xl mb-6" style="height: 500px; width: 100%;">
+
+    <!-- Display Caption and AltText -->
+    <p><strong>Caption:</strong> {{ image.Caption }}</p>
+    <p><strong>Alt Text:</strong> {{ image.AltText }}</p>
+
+    {% else %}
+    <p>Image not found.</p>
+    {% endif %}
+</body>
+</html>

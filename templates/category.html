@@ -3,36 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card with Image and Red Bars</title>
+    <title>{{ category.Title }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@700&family=Taviraj:wght@400&display=swap" rel="stylesheet">
     <style>
         .card {
-            width: 350px; /* Set the width of the card to 350px */
-            height: 200px;
-            position: relative; /* For absolute positioning of red bars */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Drop shadow for the card */
-            font-family: 'Taviraj', serif; /* Default font for the body */
-            border-radius: 15px 0 15px 0; /* Remove any previous border-radius */
-            overflow: hidden; /* Ensures the border-radius applies to child elements */
-
+        max-width: 100%; /* Allows the card to be responsive and not exceed its parent's width */
+        width: 70vw; /* Sets the width relative to the viewport width */
+        min-height: 150px; /* Fixed height as per your previous requirement */
+        height: 250px;
+        max-height: 500px;
+        position: relative; /* For absolute positioning of red bars */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Drop shadow for the card */
+        font-family: 'Taviraj', serif; /* Default font for the body */
+        border-radius: 15px 0 15px 0; /* Rounded corners for the card */
+        overflow: hidden; /* Ensures the border-radius applies to child elements */
+        margin: auto; /* Centers the card in the available space */
+   
         }
 
         .card-image {
             background-image: url('static/img/dark.jpg');
             background-size: cover;
             background-position: center;
-            height: 50px; /* Fixed height for the image area */
+            height: 100%; /* Fixed height for the image area */
+            max-width: 100%;
             border-top-left-radius: 15px; /* Rounded top-left corner */
+    
         }
     
         .red-bar {
             background-color: #ffecbd; /* Red background */
             height: 20px; /* Height of the red bar */
-            width: 50%; /* Red bar takes up half the width of the card */
+            width: 35%; /* Red bar takes up half the width of the card */
             position: absolute;
             color: #0e3d63;
             font-size: 16px;
-            padding-left: 40px;
+            padding-left: 8px;
             padding-bottom: 25px;
             border-radius: 15px 0 0 0; /* Rounded left edge for the top bar */
         }
@@ -46,6 +52,7 @@
             bottom: 3px;
             right: 0;
             border-radius: 0 0 15px 0; /* Rounded right edge for the bottom bar */
+
         }
 
         .bottom-bar:hover{
@@ -56,7 +63,12 @@
             background-color: #0e3d63; /* Red background */
             cursor: pointer; /* Hand cursor on hover */
         }
-    
+
+        .bottom-bar a {
+            color: inherit; /* Inherit the color from the parent .bottom-bar */
+            text-decoration: none; /* Remove underlines from links */
+        }
+
         .card-title {
             font-family: 'Vesper Libre', serif;
             color: #ffecbd; /* Text color for the title */
@@ -70,27 +82,120 @@
             color: white; 
             border-bottom-right-radius: 15px; /* Rounded bottom-right corner to match the red bar */
         }
+
+        .grid-container-element { 
+        display: grid; 
+        grid-template-columns: 1fr 2fr; 
+        grid-gap: 2px; 
+        width: 100%;
+        height: 100%; 
+} 
+
+
     
         p {
             margin: 0; /* Removes default margin */
+        }
+
+@media (max-width: 600px) {
+    .card {
+        width: 90vw; /* Adjusts width for smaller screens */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .card {
+        width: 85vw; /* Adjusts width for medium screens */
+    }
+}
+/* Responsive text sizes */
+@media (max-width: 1024px) {
+            .card-title {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-title {
+                font-size: 1.6em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 90vw;
+                flex-direction: column;
+            }
+
+            .card-image, .card-body {
+                width: 100%;
+            }
+
+            .card-title {
+                font-size: 1.4em;
+            }
+
+            .red-bar {
+                position: relative;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-title {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card-title {
+                font-size: 0.5em;
+            }
         }
     </style>
     
 </head>
 <body>
-    <div class="card">
-        <div class="card-image"><img src="{{ url_for('static', filename=category.image) }}" alt="{{ category.name }}"></div>
+    <div class="card">       
         <div class="red-bar top-bar">
-            <p>{{category.CategoryName}} </p>
+            <p>{% if category.CategoryID %}
+                {{ category.CategoryName }}
+            {% else %}
+                {{ post.tag.TagName }} 
+            {% endif %}</p>
         </div>
         
-        <div class="card-body">
-            <h2 class="card-title" >{{post.Title}}</h2>
-            <p> {{ post.Content }}</p>
+        <div class="grid-container-element">
+            <!-- Assume there's a way to get the correct image path for each post -->
+            <div class="card-image " >
+                {% if post.image%}
+                    <img src="{{ url_for('static', filename= post.image[0].ImagePath) }}" alt="{{ post.image[0].AltText }}" class="rounded shadow-xl mb-6" style="height: 100%; width: 100%;">
+                {% else %}
+                    <!-- Default image if no images are available -->
+                    <img src="{{ url_for('static', filename='assets/img/tang.jpg') }}" alt="Default Image" class="rounded shadow-xl mb-6" style="height: 100%; width: 100%;">
+                {% endif %}        
+            </div>
+        
+
+            <div class="card-body">
+                <h2 class="card-title">{{ post.post.Title }}</h2>
+                <!-- Display a snippet of the post description -->
+                {% set num = post.post.Description| length %}
+                <p> {% if num > 100 %}
+                    {{ post.post.Description[:100] }}...
+                    {% else %}
+                    {{ post.post.Description[:100] }} 
+                {% endif %}</p>
+            </div>
         </div>
+        
         <div class="red-bar bottom-bar">
-            <p> <a href="{{url_for('post', post_id=post.PostID)}}"> Read More -> </a></p>
-        </div>
+            <p>
+                <a href="{{ url_for('post', post_id=post.post.PostID) }}">
+                    Read More -> </a>
+                </p>
+            </div>
     </div>
+
 </body>
 </html>

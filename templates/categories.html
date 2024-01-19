@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='svg/logo.svg') }}">
+    <title>{% for category, posts in category_posts.items() %} 
+        {% if title %} Categories  
+        {% else %}
+        {{ category }}
+        {% endif %} {% endfor %}</title>    
+</head>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="padding-top: 1cm; padding-bottom: 1cm;">
+    
+        {% if title %}
+        <p style="text-align: center; font-size:42px; color: white; font-weight: bold; padding-bottom: 1cm;">
+            Categories
+        
+        </p>
+        {% endif %}
+    
+    {% for category, posts in category_posts.items() %}  
+    {% if not title %}
+    <p style="text-align: center; font-size:42px; color: white; font-weight: bold; padding-bottom: 1cm;">
+        {{ category }}
+    </p>
+{% endif %}
+
+    </p>
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-12 mb-4 px-2"> <!-- Full width column -->
+                    <div class="category-card">
+                        {% include 'category.html' %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+</div>
+
+<style>
+    .category-banner {
+        background-color: #1768AC; /* Banner background color */
+        color: #ffecbd; /* Banner text color */
+        padding: 10px; /* Banner padding */
+        margin-bottom: 1cm; /* Space below the banner */
+    }
+
+    .category-card {
+        margin-bottom: 1cm; /* Space between cards */
+        max-height: 400px; /* Maximum height for cards */
+        overflow: hidden; /* Hide overflow content */
+        /* Additional styling as needed */
+    }
+
+    /* Adjust internal card content styling if needed */
+</style>
+
+{% endblock %}

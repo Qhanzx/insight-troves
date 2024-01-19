@@ -1,8 +1,8 @@
 <!-- navbar.html -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #ffecbd;">
     <div class="container-fluid justify-content-center">
-        <a class="navbar-brand mx-auto" href="#">
-            <img src="static/svg/logo.svg" alt="Logo" style="height: 40px;"> <!-- Adjust the height as needed -->
+        <a class="navbar-brand mx-auto" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='svg/logo.svg') }}" alt="Logo" style="height: 40px;"> <!-- Adjust the height as needed -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,13 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item me-4"> <!-- Increased spacing -->
-                    <a class="nav-link custom-nav-link" href="#">Subject<span class="sr-only">(current)</span></a>
+                    <a class="nav-link custom-nav-link" href="{{ url_for('category_posts', category_name='Tutorials') }}">Tutorials<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item me-4"> <!-- Increased spacing -->
-                    <a class="nav-link custom-nav-link" href="#">Examples</a>
+                    <a class="nav-link custom-nav-link" href="{{ url_for('category_posts', category_name='Examples') }}">Examples</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link custom-nav-link" href="#">Projects</a>
+                    <a class="nav-link custom-nav-link" href="{{ url_for('category_posts', category_name='Projects') }}">Projects</a>
                 </li>
                 <!-- Add other menu items here -->
             </ul>
@@ -28,6 +28,18 @@
     /* More specific selector for navbar */
     nav.navbar.navbar-expand-lg.navbar-light.bg-light {
         background-color: #1768AC !important; /* Background color */
+    }
+
+
+    /* Style for the line below the navbar */
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0cm; /* Position the line below the navbar */
+        height: 0.1rem; /* Height (thickness) of the line */
+        background-color: #ffecbd; /* Color of the line, adjust as needed */
     }
 
     .custom-nav-link {

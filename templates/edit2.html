@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">{% block title %}Edit Post{% endblock %}</h1>
+    
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <form method="POST">
+                        <!-- Include a hidden field for the PostID to identify which post is being edited -->
+                        <input type="hidden" id="postID" name="post_id" value="{{ post_id }}">
+                        
+                        <div class="form-group text-center">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ post_title }}" required>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="form-group text-center">
+                                <label for="image">Image</label>
+                                <input type="file" class="form-control-file" id="image" name="image">
+                            </div>
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="2" required>{{ post_description }}</textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="content">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="5" required>{{ post_content }}</textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="category">Category</label>
+                            <select class="form-control" id="category" name="category_id" required>
+                                <option value="">Choose...</option>
+                                <!-- Dynamically load categories here -->
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}" {% if category.id == post_category_id %}selected{% endif %}>
+                                        {{ category.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="tag">Tag</label>
+                            <select class="form-control" id="tag" name="tag_id" required>
+                                <option value="">Choose...</option>
+                                <!-- Dynamically load tags here -->
+                                {% for tag in tags%}
+                                <option value="{{ tag.id }}" {% if tag.id == post_tag_id %}selected{% endif %}>
+                                {{ tag.name }}
+                                </option>
+                                {% endfor %}
+                                </select>
+                                </div>
+                                <div class="form-group text-center">
+                                <label for="readTime">Read Time (minutes)</label>
+                                <input type="number" class="form-control" id="readTime" name="read_time" value="{{ post_read_time }}" required>
+                                </div>
+                                <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                                </form>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                
+                                </div>
+                                {% endblock %}
